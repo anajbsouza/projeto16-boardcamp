@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createRental, deleteRental, getRentals, finishRental } from "../controllers/rentals.controllers.js";
 import validateSchema from "../middlewares/validateSchema.middleware.js";
-import { rentalSchema } from "../schemas/rentals.schemas.js";
+import { rentalSchema } from "../schemas/rentals.schema.js";
 import { validateCreateRental, validateReturnRental, validateDeleteRental } from "../middlewares/rentals.middleware.js";
 
 const rentalsRouter = Router()
