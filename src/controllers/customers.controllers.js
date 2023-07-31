@@ -22,7 +22,12 @@ export async function getCustomerById(req, res) {
 
 export async function createCustomer(req, res) {
     try {
-        res.send('oi');
+        const { name, phone, birthday, cpf } = req.body;
+        await db.query(`
+            INSERT INTO customers (name, phone, birthday, cpf)
+            VALUES ($1, $2, $3, $4);
+        `, [name, phone, birthday, cpf])
+        res.sendStatus(201);
     } catch (err) {
         res.status(500).send(err.message);
     }

@@ -7,7 +7,7 @@ import { validateCustomerCpf, validateGetCustomer } from "../middlewares/custome
 const customersRouter = Router()
 
 customersRouter.get("/customers", getCustomers)
-customersRouter.get("/customers/:id", validateGetCustomer, getCustomerById)
+customersRouter.get("/customers/:id", getCustomerById)
 customersRouter.post("/customers", validateSchema(customerSchema), validateCustomerCpf, createCustomer)
 customersRouter.put("/customers/:id", validateSchema(customerSchema),validateCustomerCpf,  updateCustomer)
 
