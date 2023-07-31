@@ -1,3 +1,5 @@
+import { db } from "../database/database.connection.js";
+
 export async function validateCreateGame(req, res, next) {
     try {
         const { name } = req.body;
