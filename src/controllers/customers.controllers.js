@@ -34,16 +34,17 @@ export async function createCustomer(req, res) {
 }
 
 export async function updateCustomer(req, res) {
-    const { id } = req.params;
-    const { name, phone, birthday, cpf } = req.body;
+    const { id } = req.params
+    const { name, phone, birthday, cpf } = req.body
+
     try {
         await db.query(`
             UPDATE customers 
-            SET name=$1, phone=$2, birthday=$3, cpf=$4
-            WHERE id=$5
-        `)
-        res.sendStatus(200);
+                SET name=$1, phone=$2, birthday=$3, cpf=$4
+                WHERE id=$5;
+        `, [name, phone, birthday, cpf, id])
+        res.sendStatus(200)
     } catch (err) {
-        res.status(500).send(err.message);
+        res.status(500).send(err.message)
     }
 } 
