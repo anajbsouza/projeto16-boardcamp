@@ -21,8 +21,8 @@ export async function getCustomerById(req, res) {
 }
 
 export async function createCustomer(req, res) {
+    const { name, phone, birthday, cpf } = req.body;
     try {
-        const { name, phone, birthday, cpf } = req.body;
         await db.query(`
             INSERT INTO customers (name, phone, birthday, cpf)
             VALUES ($1, $2, $3, $4);
@@ -34,8 +34,15 @@ export async function createCustomer(req, res) {
 }
 
 export async function updateCustomer(req, res) {
+    const { id } = req.params;
+    const { name, phone, birthday, cpf } = req.body;
     try {
-        res.send('oi');
+        await db.query(`
+            UPDATE customers 
+            SET name=$1, phone=$2, birthday=$3, cpf=$4
+            WHERE id=$5
+        `)
+        res.sendStatus(200);
     } catch (err) {
         res.status(500).send(err.message);
     }
